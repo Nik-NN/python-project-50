@@ -19,5 +19,5 @@ jobs:
           poetry install
       - name: Run linter and pytest
         run: |
-          make lint
-          make test
+          poetry run flake8 gendiff
+          poetry run pytest
