@@ -1,4 +1,4 @@
-name: Code cheks
+name: code cheks
 
 on:
   - push
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.8, 3.9]
+        python-version: [3.9, 3.10]
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python ${{ matrix.python-version }}
@@ -22,7 +22,8 @@ jobs:
           make install
       - name: Run linter and pytest
         run: |
-          make check
+          make lint
+          make test
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
