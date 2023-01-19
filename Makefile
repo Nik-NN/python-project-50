@@ -16,7 +16,7 @@ test:
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
 
-lint:
+make lint:
 	poetry run flake8 gendiff
 
 .PHONY: install test lint selfcheck check build
