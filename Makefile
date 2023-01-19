@@ -1,11 +1,8 @@
 install:
-	poetry instal
+	poetry install
 
 gendiff:
 	poetry run gendiff
-
-build:
-	poetry build
 
 publish:
 	poetry publish --dry-run
