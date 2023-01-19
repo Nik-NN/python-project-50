@@ -24,15 +24,15 @@ def open_files(first_file, second_file):
 
 
 def change_boolean(file1):
-  file2 = file1.copy()
-  for item in file2:
-    if file2[item] == False:
-      file2[item] = 'false'
-    elif file2[item] == True:
-      file2[item] = 'true'
-    elif file2[item] == None:
-      file2[item] = 'null'
-  return file2
+    file2 = file1.copy()
+    for item in file2:
+        if file2[item] is False:
+            file2[item] = 'false'
+        elif file2[item] is True:
+            file2[item] = 'true'
+        elif file2[item] is None:
+            file2[item] = 'null'
+    return file2
 
 
 def generate_diff(file1, file2):
