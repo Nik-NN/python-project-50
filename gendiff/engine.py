@@ -42,17 +42,17 @@ def generate_diff(file1, file2):
     list({"a": 1, "b": 2}.keys())
     for item in file1:
         if file2.get(item, "no such key") == "no such key":
-            result.append(f' - {item}: {file1.get(item)}')
+            result.append(f'  - {item}: {file1.get(item)}')
         elif file1.get(item) == file2.get(item):
-            result.append(f'   {item}: {file1.get(item)}')
+            result.append(f'    {item}: {file1.get(item)}')
         elif file1.get(item) != file2.get(item):
-            result.append(f' - {item}: {file1.get(item)}')
-            result.append(f' + {item}: {file2.get(item)}')
+            result.append(f'  - {item}: {file1.get(item)}')
+            result.append(f'  + {item}: {file2.get(item)}')
     list_key_file1 = list(file1.keys())
     list_key_file2 = list(file2.keys())
     new_key = find_new_keys(list_key_file1, list_key_file2)
     for item in new_key:
-        result.append(f' + {item}: {file2.get(item)}')
-    result.sort(key=lambda x: x[3])
+        result.append(f'  + {item}: {file2.get(item)}')
+    result.sort(key=lambda x: x[4])
     result = list_to_string(result)
     return result
