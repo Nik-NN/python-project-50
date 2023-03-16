@@ -1,58 +1,84 @@
 import json
-
-
-def find_new_keys(list_key_file1, list_key_file2):
-    new_key = []
-    for item in list_key_file2:
-        if not (item in list_key_file1):
-            new_key.append(item)
-    return new_key
-
-
-def list_to_string(lists):
-    result = '{\n'
-    for item in lists:
-        result += f"{item}\n"
-    result += '}'
-    return result
-
-
-def open_files(first_file, second_file):
-    f1 = json.load(open(first_file))
-    f2 = json.load(open(second_file))
-    return f1, f2
-
-
-def change_boolean(file1):
-    file2 = file1.copy()
-    for item in file2:
-        if file2[item] is False:
-            file2[item] = 'false'
-        elif file2[item] is True:
-            file2[item] = 'true'
-        elif file2[item] is None:
-            file2[item] = 'null'
-    return file2
+import yaml
+from yaml.loader import SafeLoader
 
 
 def generate_diff(file1, file2):
     file1, file2 = open_files(file1, file2)
-    file1, file2 = change_boolean(file1), change_boolean(file2)
+    diff = get_diff(file1, file2)
+    result = stylish(diff)
+    return result
+
+def open_files(file1, file2):
+    if 'json' in file1:
+        file_1 = json.load(open(file1))
+        file_2 = json.load(open(file2))
+    else:
+        file_1 = yaml.load(open(file1), Loader=SafeLoader)
+        file_2 = yaml.load(open(file2), Loader=SafeLoader)
+    return file_1, file_2
+
+
+def change_boolean(value):
+    if value is True:
+        value = 'true'
+    if value is False:
+        value = 'false'
+    elif value is None:
+        value = 'null'
+    return value
+
+
+def get_diff(file1, file2, depth=' '):
+    keys = sorted(set(list(file1.keys()) + list(file2.keys())))
     result = []
-    list({"a": 1, "b": 2}.keys())
-    for item in file1:
-        if file2.get(item, "no such key") == "no such key":
-            result.append(f'  - {item}: {file1.get(item)}')
-        elif file1.get(item) == file2.get(item):
-            result.append(f'    {item}: {file1.get(item)}')
-        elif file1.get(item) != file2.get(item):
-            result.append(f'  - {item}: {file1.get(item)}')
-            result.append(f'  + {item}: {file2.get(item)}')
-    list_key_file1 = list(file1.keys())
-    list_key_file2 = list(file2.keys())
-    new_key = find_new_keys(list_key_file1, list_key_file2)
-    for item in new_key:
-        result.append(f'  + {item}: {file2.get(item)}')
-    result.sort(key=lambda x: x[4])
-    result = list_to_string(result)
+    for key in keys:
+        if key not in file1:
+            result.append({'name': key, 'status': 'added', 'value': file2[key], 'depth': depth})
+        elif key not in file2:
+            result.append({'name': key, 'status': 'deleted', 'value': file1[key], 'depth': depth})
+        elif type(file1[key]) is dict and type(file2[key]) is dict:
+            result.append({'name': key, 'status': 'parent', 'children': get_diff(file1[key], file2[key], depth+' '), 'depth': depth})
+        elif file1[key] == file2[key]:
+            result.append({'name': key, 'status': 'unchanged', 'value': file1[key], 'depth': depth})
+        elif file1[key] != file2[key]:
+            result.append({'name': key, 'status': 'changed', 'value1': file1[key], 'value2': file2[key], 'depth': depth})
+    return result
+
+
+def stylish(diff, replacer=' ', space_count=4, deepth=1):
+    result = "{\n"
+    indent = replacer * space_count * deepth
+    for item in diff:
+        if item['status'] == 'parent':
+            value = stylish(item['children'], replacer, space_count, deepth + 1)
+            result += f"{indent[:-2]}  {item['name']}: {value}\n"
+        elif item['status'] == 'unchanged':
+            value = stringify(item['value'], indent)
+            result += f"{indent[:-2]}  {item['name']}: {value}\n"
+        elif item['status'] == 'added':
+            value = stringify(item['value'], indent)
+            result += f"{indent[:-2]}+ {item['name']}: {value}\n"
+        elif item['status'] == 'deleted':
+            value = stringify(item['value'], indent)
+            result +=  f"{indent[:-2]}- {item['name']}: {value}\n"
+        elif item['status'] == 'changed':
+            value1 = stringify(item['value1'], indent)
+            result += f"{indent[:-2]}- {item['name']}: {value1}\n"
+            value2 = stringify(item['value2'], indent)
+            result += f"{indent[:-2]}+ {item['name']}: {value2}\n"
+    result += indent[:-4] + '}'
+    return result
+
+
+def stringify(value, indent):
+    if type(value) is dict:
+        result = "{\n"
+        indent += '    '
+        for el, val in value.items():
+            result += f'{indent}{el}: '
+            result += stringify(val, indent) + '\n'
+        result += indent[:-4] + '}'
+    else:
+        result = str(change_boolean(value))
     return result
