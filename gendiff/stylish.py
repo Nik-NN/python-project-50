@@ -1,9 +1,9 @@
-def stylish(diff, replacer=' ', space_count=4, deepth=1):
+def get_stylish_diff(diff, replacer=' ', space_count=4, deepth=1):
     result = "{\n"
     indent = replacer * space_count * deepth
     for item in diff:
         if item['status'] == 'parent':
-            value = stylish(item['children'], replacer, space_count, deepth + 1)
+            value = get_stylish_diff(item['children'], replacer, space_count, deepth + 1)
             result += f"{indent[:-2]}  {item['name']}: {value}\n"
         elif item['status'] == 'unchanged':
             value = stringify(item['value'], indent)
