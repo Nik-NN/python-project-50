@@ -14,3 +14,5 @@ def tests_generate_diff():
     assert generate_diff(file_json1, file_json2, format='plain') == result_for_plain
     assert generate_diff(file_yml1, file_yml2, format='plain') == result_for_plain
     assert generate_diff(file_yml1, file_yml2, format='json') == result_for_json
+
+
