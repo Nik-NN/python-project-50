@@ -11,6 +11,7 @@ def change_boolean(value):
         value = f"'{value}'"
     return value
 
+
 def get_palin_diff(diff):
     result = plain(diff)
     return result[:-1]
@@ -21,21 +22,18 @@ def plain(diff):
     for item in diff:
         if item['status'] == 'parent':
             value = plain(item['children'])
-            #value = change_boolean(value)
             result += f"{value}"
         elif item['status'] == 'added':
-            path_deep = (item['path'])[:-1]
+            path = (item['path'])[:-1]
             value = item['value']
             value = change_boolean(value)
-            result += f"Property '{path_deep}' was added with value: {value}\n"
+            result += f"Property '{path}' was added with value: {value}\n"
         elif item['status'] == 'deleted':
-            path_deep = (item['path'])[:-1]
-            result += f"Property '{path_deep}' was removed\n"
+            path = (item['path'])[:-1]
+            result += f"Property '{path}' was removed\n"
         elif item['status'] == 'changed':
-            path_deep = (item['path'])[:-1]
-            value1 = item['value1']
-            value2 = item['value2']
-            value1 = change_boolean(value1)
-            value2 = change_boolean(value2)
-            result += f"Property '{path_deep}' was updated. From {value1} to {value2}\n"
+            path = (item['path'])[:-1]
+            val1 = change_boolean(item['value1'])
+            val2 = change_boolean(item['value2'])
+            result += f"Property '{path}' was updated. From {val1} to {val2}\n"
     return result

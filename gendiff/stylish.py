@@ -3,7 +3,8 @@ def get_stylish_diff(diff, replacer=' ', space_count=4, deepth=1):
     indent = replacer * space_count * deepth
     for item in diff:
         if item['status'] == 'parent':
-            value = get_stylish_diff(item['children'], replacer, space_count, deepth + 1)
+            diff = item['children']
+            value = get_stylish_diff(diff, replacer, space_count, deepth + 1)
             result += f"{indent[:-2]}  {item['name']}: {value}\n"
         elif item['status'] == 'unchanged':
             value = stringify(item['value'], indent)
@@ -13,7 +14,7 @@ def get_stylish_diff(diff, replacer=' ', space_count=4, deepth=1):
             result += f"{indent[:-2]}+ {item['name']}: {value}\n"
         elif item['status'] == 'deleted':
             value = stringify(item['value'], indent)
-            result +=  f"{indent[:-2]}- {item['name']}: {value}\n"
+            result += f"{indent[:-2]}- {item['name']}: {value}\n"
         elif item['status'] == 'changed':
             value1 = stringify(item['value1'], indent)
             result += f"{indent[:-2]}- {item['name']}: {value1}\n"
