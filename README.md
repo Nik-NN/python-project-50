@@ -41,3 +41,7 @@ Report generation as plain text, stylish and json
 ### Comparing attached files (YAML)
 
 <h3 align="center"><a href="https://asciinema.org/a/A9QDJqQqp1QEjrnQva8kCWdEo" target="_blank"><img src="https://asciinema.org/a/A9QDJqQqp1QEjrnQva8kCWdEo.svg" /></a></h3>
+
+### Comparing attached files (Flat Format)
+
+<h3 align="center"><a href="https://asciinema.org/a/IbL13ETIr8QbiDN8OrGxMv1xN" target="_blank"><img src="https://asciinema.org/a/IbL13ETIr8QbiDN8OrGxMv1xN.svg" /></a></h3>
