@@ -18,5 +18,8 @@ test-coverage:
 
 make lint:
 	poetry run flake8 gendiff
+	
+package-install:
+	python3 -m pip install --user dist/*.whl
 
 .PHONY: install test lint selfcheck check build
