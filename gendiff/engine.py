@@ -25,7 +25,7 @@ def open_files(file):
         return yaml.load(open(file), Loader=SafeLoader)
 
 
-def get_diff(file1, file2, path=''):
+def get_diff(file1, file2, path=''):  # noqa: C901
     keys = sorted(set(list(file1.keys()) + list(file2.keys())))
     result = []
     for key in keys:
