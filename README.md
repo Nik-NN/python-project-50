@@ -36,4 +36,4 @@ Report generation as plain text, stylish and json
 
 ### Comparing attached files (JSON)
 
-<h3 align="center"><a <a href="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME" target="_blank"><img src="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME.svg" /></a> /></a></h3>
+<h3 align="center"><a href="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME" target="_blank"><img src="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME.svg" /></a></h3>
