@@ -7,7 +7,7 @@ from gendiff.get_json import get_json_diff
 
 
 def generate_diff(file1, file2, format='stylish'):
-    file1, file2 = open_files(file1, file2)
+    file1, file2 = open_files(file1), open_files(file2)
     diff = get_diff(file1, file2)
     if format == 'stylish':
         result = get_stylish_diff(diff)
@@ -18,14 +18,11 @@ def generate_diff(file1, file2, format='stylish'):
     return result
 
 
-def open_files(file1, file2):
-    if 'json' in file1:
-        file_1 = json.load(open(file1))
-        file_2 = json.load(open(file2))
-    else:
-        file_1 = yaml.load(open(file1), Loader=SafeLoader)
-        file_2 = yaml.load(open(file2), Loader=SafeLoader)
-    return file_1, file_2
+def open_files(file):
+    if 'json' in file:
+        return json.load(open(file))
+    elif 'yml' in file or 'yaml' in file:
+        return yaml.load(open(file), Loader=SafeLoader)
 
 
 def get_diff(file1, file2, path=''):
