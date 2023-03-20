@@ -16,3 +16,20 @@
    ```
    make package-install
    ```
+## Requirements
+
+Python (version 3.10)
+
+Poetry (version 1.2.2)
+   
+## About The Project
+
+The Difference Calculator is a program that determines the difference between two data structures.
+
+### Features of the utility:
+
+Support for different input formats: yaml, json
+
+Report generation as plain text, stylish and json
+
+### Example usage:
