@@ -35,17 +35,25 @@ Report generation as plain text, stylish and json
 ## Example usage:
 
 ### Comparing attached files json (Stylish Format)
-
+   ```
+   gendiff filepath1.json filepath2.json
+   ```
 <h3 align="center"><a href="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME" target="_blank"><img src="https://asciinema.org/a/gBDhaz37GhhTq5padjF1aqvME.svg" /></a></h3>
 
-### Comparing attached files (Stylish Format)
-
+### Comparing attached files yaml (Stylish Format)
+   ```
+   gendiff filepath1.yaml filepath2.yaml
+   ```
 <h3 align="center"><a href="https://asciinema.org/a/A9QDJqQqp1QEjrnQva8kCWdEo" target="_blank"><img src="https://asciinema.org/a/A9QDJqQqp1QEjrnQva8kCWdEo.svg" /></a></h3>
 
 ### Comparing attached files (Plain Format)
-
+   ```
+   gendiff --format plain filepath1.json filepath2.json
+   ```
 <h3 align="center"><a href="https://asciinema.org/a/IbL13ETIr8QbiDN8OrGxMv1xN" target="_blank"><img src="https://asciinema.org/a/IbL13ETIr8QbiDN8OrGxMv1xN.svg" /></a></h3>
 
 ### Comparing attached files (Json Format)
-
+   ```
+   gendiff --format json filepath1.json filepath2.json
+   ```
 <h3 align="center"><a href="https://asciinema.org/a/PG1qgR5oSG0dXh1YeF2bZMdXv" target="_blank"><img src="https://asciinema.org/a/PG1qgR5oSG0dXh1YeF2bZMdXv.svg" /></a></h3>
