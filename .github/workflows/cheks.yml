@@ -21,10 +21,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install poetry
-          make install
+          poetry install
       - name: Run linter and pytest
         run: |
-          make check
+          poetry run flake8 gendiff
+          poetry run pytest --cov=gendiff --cov-report xml
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
