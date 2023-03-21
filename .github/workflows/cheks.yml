@@ -1,4 +1,3 @@
-
 name: code-cheks
 
 on:
@@ -8,20 +7,24 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # we want to test our package on several versions of Python
+        python-version: [3.8, 3.9]
     steps:
       - uses: actions/checkout@v3
-      - name: Install python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: 3.11.
-      - name: Install deps
+          python-version: ${{ matrix.python-version }}
+        # make depends on poetry
+      - name: Install dependencies
         run: |
           pip install poetry
-          poetry install
+          make install
       - name: Run linter and pytest
         run: |
-          poetry run flake8 gendiff
-          poetry run pytest --cov=gendiff --cov-report xml
+          make check
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.2.0
         if: github.ref_name == 'main'
