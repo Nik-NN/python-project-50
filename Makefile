@@ -16,6 +16,4 @@ test:
 test-coverage:
 	poetry run pytest --cov=gendiff --cov-report xml
 
-	
-package-install:
-	python3 -m pip install --user dist/*.whl
+.PHONY: all test clean
