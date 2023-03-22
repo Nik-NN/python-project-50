@@ -21,3 +21,5 @@ make lint:
 	
 package-install:
 	python3 -m pip install --user dist/*.whl
+
+.PHONY: install test lint selfcheck check build
