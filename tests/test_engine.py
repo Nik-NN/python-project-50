@@ -1,4 +1,4 @@
-from gendiff.engine import generate_diff
+from gendiff.generate_diff import generate_diff
 
 def tests_generate_diff():
     file_json1 = 'tests/fixtures/file1_for_test.json'
