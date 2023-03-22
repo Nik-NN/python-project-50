@@ -8,13 +8,13 @@ from gendiff.get_json import get_json_diff
 
 def generate_diff(file1, file2, format='stylish'):
     file1, file2 = open_files(file1), open_files(file2)
-    diff = get_diff(file1, file2)
+    diff_file = get_diff(file1, file2)
     if format == 'stylish':
-        result = get_stylish_diff(diff)
+        result = get_stylish_diff(diff_file)
     elif format == 'plain':
-        result = get_palin_diff(diff)
+        result = get_palin_diff(diff_file)
     elif format == 'json':
-        result = get_json_diff(diff)
+        result = get_json_diff(diff_file)
     return result
 
 
