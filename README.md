@@ -1,3 +1,5 @@
+<a name="readme-top"></a>
+
 # Difference Calculator
 
 ### Hexlet tests and linter status:
@@ -57,3 +59,5 @@ Report generation as plain text, stylish and json
    gendiff --format json filepath1.json filepath2.json
    ```
 <h3 align="center"><a href="https://asciinema.org/a/PG1qgR5oSG0dXh1YeF2bZMdXv" target="_blank"><img src="https://asciinema.org/a/PG1qgR5oSG0dXh1YeF2bZMdXv.svg" /></a></h3>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
