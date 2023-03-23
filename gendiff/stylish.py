@@ -1,5 +1,3 @@
-
-
 def get_stylish_diff(diff, replacer=' ', space_count=4, deepth=1):  # noqa: C901
     result = "{\n"
     indent = replacer * space_count * deepth
