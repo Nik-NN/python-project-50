@@ -2,7 +2,7 @@ import json
 import yaml
 from yaml.loader import SafeLoader
 from gendiff.stylish import get_stylish_diff
-from gendiff.plain import get_palin_diff
+from gendiff.plain import get_plain_diff
 from gendiff.get_json import get_json_diff
 
 
@@ -12,7 +12,7 @@ def generate_diff(file1, file2, format='stylish'):
     if format == 'stylish':
         result = get_stylish_diff(diff_file)
     elif format == 'plain':
-        result = get_palin_diff(diff_file)
+        result = get_plain_diff(diff_file)
     elif format == 'json':
         result = get_json_diff(diff_file)
     return result

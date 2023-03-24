@@ -12,7 +12,7 @@ def change_boolean(value):
     return value
 
 
-def get_palin_diff(diff):
+def get_plain_diff(diff):
     result = plain(diff)
     return result[:-1]
 
