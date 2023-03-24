@@ -1,9 +1,9 @@
 import json
 import yaml
 from yaml.loader import SafeLoader
-from gendiff.stylish import get_stylish_diff
-from gendiff.plain import get_plain_diff
-from gendiff.get_json import get_json_diff
+from gendiff.stylish_formatter import get_stylish_diff
+from gendiff.plain_formatter import get_plain_diff
+from gendiff.json_formatter import get_json_diff
 
 
 def generate_diff(file1, file2, format='stylish'):
@@ -19,9 +19,9 @@ def generate_diff(file1, file2, format='stylish'):
 
 
 def open_files(file):
-    if 'json' in file:
+    if file.endswith('json'):
         return json.load(open(file))
-    elif 'yml' in file or 'yaml' in file:
+    elif file.endswith('yml') or file.endswith('yaml'):
         return yaml.load(open(file), Loader=SafeLoader)
 
 
