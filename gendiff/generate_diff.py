@@ -17,7 +17,6 @@ def generate_diff(file1, file2, format='stylish'):
         return get_json_diff(diff_file)
 
 
-
 def open_files(file):
     if file.endswith('json'):
         return json.load(open(file))
