@@ -1,21 +1,21 @@
 import json
 import yaml
 from yaml.loader import SafeLoader
-from gendiff.stylish_formatter import get_stylish_diff
-from gendiff.plain_formatter import get_plain_diff
-from gendiff.json_formatter import get_json_diff
+from gendiff.formatters.stylish_formatter import get_stylish_diff
+from gendiff.formatters.plain_formatter import get_plain_diff
+from gendiff.formatters.json_formatter import get_json_diff
 
 
 def generate_diff(file1, file2, format='stylish'):
     file1, file2 = open_files(file1), open_files(file2)
     diff_file = get_diff(file1, file2)
     if format == 'stylish':
-        result = get_stylish_diff(diff_file)
+        return get_stylish_diff(diff_file)
     elif format == 'plain':
-        result = get_plain_diff(diff_file)
+        return get_plain_diff(diff_file)
     elif format == 'json':
-        result = get_json_diff(diff_file)
-    return result
+        return get_json_diff(diff_file)
+
 
 
 def open_files(file):
