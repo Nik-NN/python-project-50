@@ -14,7 +14,15 @@
    ```
    git clone https://github.com/Nik-NN/python-project-50.git
    ```
-2. Install packages
+2. Poetry install
+   ```
+   make install
+   ```
+3. poetry build
+   ```
+   make build
+   ```
+4. Install packages
    ```
    make package-install
    ```
