@@ -20,10 +20,18 @@ def generate_diff(file1, file2, format='stylish'):
 
 def open_files(file):
     if file.endswith('json'):
-        return json.load(open(file))
+        return load_json(file)
     elif file.endswith('yml') or file.endswith('yaml'):
-        return yaml.load(open(file), Loader=SafeLoader)
+        return load_yml(file)
     raise Exception('Wrong format.\nInput formats: yaml, json.')
+
+
+def load_json(file):
+    return json.load(open(file))
+
+
+def load_yml(file):
+    return yaml.load(open(file), Loader=SafeLoader)
 
 
 def get_diff(file1, file2, path=''):  # noqa: C901
