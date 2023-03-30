@@ -17,11 +17,11 @@ def get_plain_diff(diff):
     return result.rstrip()
 
 
-def plain(diff, deep=0):  # noqa: C901
+def plain(diff):
     result = ''
     for item in diff:
         if item['status'] == 'parent':
-            value = plain(item['children'], deep + 1)
+            value = plain(item['children'])
             result += f"{value}"
         elif item['status'] == 'added':
             path = (item['path'])[:-1]
