@@ -11,6 +11,7 @@ def change_boolean(value):
         value = f"'{value}'"
     return value
 
+
 def get_plain_diff(diff):
     result = plain(diff)
     return result.rstrip()
