@@ -25,7 +25,7 @@ def get_stylish_diff(diff, replacer=' ', space_count=4, deepth=1):  # noqa: C901
 
 
 def stringify(value, indent):
-    if type(value) is dict:
+    if isinstance(value, dict):
         result = "{\n"
         indent += '    '
         for el, val in value.items():

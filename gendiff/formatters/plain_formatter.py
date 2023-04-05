@@ -1,5 +1,5 @@
 def change_boolean(value):
-    if type(value) is dict:
+    if isinstance(value, dict):
         return '[complex value]'
     elif value is True:
         value = 'true'
